@@ -1,5 +1,6 @@
 package vproxybase.util.net;
 
+import vfd.IPPort;
 import vproxybase.connection.Connection;
 import vproxybase.util.ByteArray;
 import vproxybase.util.LogType;
@@ -120,10 +121,16 @@ public class Conn {
 
     public void close() {
         conn.close();
+        // do not call closed callback if it's closed by user
+        this.closedCallbackCalled = true;
     }
 
     @Override
     public String toString() {
         return "" + conn;
+    }
+
+    public IPPort remote() {
+        return conn.remote;
     }
 }

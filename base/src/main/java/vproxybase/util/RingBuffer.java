@@ -4,6 +4,7 @@ import vproxybase.util.nio.ByteArrayChannel;
 import vproxybase.util.ringbuffer.SimpleRingBuffer;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
 import java.util.Set;
@@ -17,6 +18,14 @@ public interface RingBuffer {
 
     static SimpleRingBuffer allocate(int cap) {
         return SimpleRingBuffer.allocate(cap);
+    }
+
+    static SimpleRingBuffer wrap(ByteBuffer buf) {
+        return SimpleRingBuffer.wrap(buf);
+    }
+
+    static SimpleRingBuffer wrap(byte[] buf) {
+        return wrap(ByteBuffer.wrap(buf));
     }
 
     default int storeBytesFrom(ByteArrayChannel channel) {

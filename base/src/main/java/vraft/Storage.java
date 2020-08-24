@@ -1,6 +1,7 @@
 package vraft;
 
-import vfd.IPPort;
+import vfd.IP;
+import vraft.msg.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,8 +50,8 @@ public class Storage {
         final Map<ServerRef, Integer> matchIndexes = new HashMap<>(); // The index of the highest log entry known to have been replicated on each follower.
     }
 
-    public Storage(IPPort id, ServerRole initialRole) {
-        this.id = id.formatToIPPortString();
+    public Storage(IP ip, ServerRole initialRole) {
+        this.id = ip.formatToIPString();
         this.role = initialRole;
     }
 }
